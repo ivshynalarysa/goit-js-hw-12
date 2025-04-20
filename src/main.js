@@ -14,7 +14,7 @@ const refs = {
 let page = 1;
 let enteredInput = "";
 
-
+hideLoader();
 
 refs.form.addEventListener('submit', handleSubmit);
 refs.loadMore.addEventListener('click', onLoadMore);
@@ -24,6 +24,11 @@ refs.loadMore.classList.replace("load-more", "hidden")
 
 function handleSubmit(event) {
     event.preventDefault();
+	refs.gallery.innerHTML = '';
+
+	hideLoadMoreButton();
+	showLoader();
+
     enteredInput = event.target.elements.search.value.trim();
 	/*refs.searchInput.value.trim();*/
     page = 1;
@@ -59,7 +64,7 @@ function handleSubmit(event) {
 
             if (data.hits.length < data.totalHits) {
 				showLoadMoreButton()
-                refs.loadMore.classList.replace("load-more-hidden", "load-more");
+                /*refs.loadMore.classList.replace("load-more-hidden", "load-more");*/
             } else {
                /* refs.loadMore.classList.replace("load-more", "load-more-hidden");*/
 			   hideLoadMoreButton()
