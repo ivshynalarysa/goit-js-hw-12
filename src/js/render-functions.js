@@ -3,6 +3,9 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const gallery = document.querySelector(".gallery");
 const loader = document.querySelector(".loader");
+const loadMore = document.querySelector(".load-more");
+
+
 let lightbox = null;
 
 function galeryTemplate(data) {
@@ -59,6 +62,14 @@ export function showLoader() {
 
 export function hideLoader() {
   loader.classList.add("hidden");
+}
+
+export function showLoadMoreButton() {
+  loadMore.classList.add("load-more");
+}
+
+export function hideLoadMoreButton() {
+  loadMore.classList.remove("load-more");
 }
 
 export function smoothScroll() {

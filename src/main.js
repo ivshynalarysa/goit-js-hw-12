@@ -1,7 +1,7 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import { getImagesByQuery } from "./js/pixabay-api";
-import { createGallery, clearGallery,  showLoader, hideLoader, smoothScroll } from "./js/render-functions";
+import { createGallery, clearGallery,  showLoader, hideLoader, showLoadMoreButton, hideLoadMoreButton,  smoothScroll } from "./js/render-functions";
 
 const refs = {
 	form: document.querySelector('form'),
@@ -18,7 +18,9 @@ let enteredInput = "";
 
 refs.form.addEventListener('submit', handleSubmit);
 refs.loadMore.addEventListener('click', onLoadMore);
-refs.loadMore.classList.replace("load-more", "load-more-hidden")
+refs.loadMore.classList.replace("load-more", "hidden")
+
+
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -37,8 +39,10 @@ function handleSubmit(event) {
     }
 
     showLoader();
+	showLoadMoreButton();
     clearGallery();
-    refs.loadMore.classList.replace("load-more", "load-more-hidden");
+	hideLoadMoreButton();
+   /* refs.loadMore.classList.replace("load-more", "load-more-hidden");*/
 
     getImagesByQuery(enteredInput, page)
         .then(response => {
@@ -54,9 +58,11 @@ function handleSubmit(event) {
             }
 
             if (data.hits.length < data.totalHits) {
+				showLoadMoreButton()
                 refs.loadMore.classList.replace("load-more-hidden", "load-more");
             } else {
-                refs.loadMore.classList.replace("load-more", "load-more-hidden");
+               /* refs.loadMore.classList.replace("load-more", "load-more-hidden");*/
+			   hideLoadMoreButton()
             }
             createGallery(data.hits);
 
@@ -80,7 +86,8 @@ function handleSubmit(event) {
 async function onLoadMore() {
     page++;
     refs.loadMore.disabled = true;
-    refs.loadMore.classList.replace("load-more", "load-more-hidden");
+	hideLoadMoreButton()
+    /*refs.loadMore.classList.replace("load-more", "load-more-hidden");*/
     showLoader();
 
     try {
@@ -90,14 +97,15 @@ async function onLoadMore() {
         createGallery(data.hits);
         smoothScroll();
 
-        const totalPages = Math.ceil(data.totalHits / 15);
+        const totalPages = Math.ceil(data.totalHits / 20 /*15*/);
         if (page >= totalPages) {
             iziToast.info({
                 position: 'topRight',
                 message: "We're sorry, but you've reached the end of search results."
             });
         } else {
-            refs.loadMore.classList.replace("load-more-hidden", "load-more");
+			showLoadMoreButton()
+            /*refs.loadMore.classList.replace("load-more-hidden", "load-more");*/
         }
 
     } catch (error) {
