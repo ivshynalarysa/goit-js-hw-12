@@ -1,7 +1,4 @@
-* {
-  box-sizing: border-box;
-  color: black;
-}
+
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -44,7 +41,7 @@ img {
 }
 
 .iziToast-close {
-  background: url("../public/img/vector.svg") no-repeat center !important;
+  
   background-size: 12px !important;
   width: 12px;
   height: 12px;
@@ -125,7 +122,6 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 28px;
   margin-top: 4px;
   padding: 0 20px 0 20px;
 }
@@ -169,7 +165,6 @@ img {
   position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
-  display: flex;
   margin: 0 auto;
 }
 
@@ -212,5 +207,34 @@ img {
   }
 }
 .hidden {
+  display: none;
+}
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background: #4e75ff;
+  margin: 20px auto;
+  border: none;
+  margin-bottom: 10px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.load-more:hover {
+  background: #6c8cff;
+}
+
+.load-more-hidden {
   display: none;
 }

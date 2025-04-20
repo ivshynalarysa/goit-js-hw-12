@@ -3,25 +3,20 @@ import axios from "axios";
 
 const API_KEY = "49795001-63fc88dd531083a7427250d55";
 
-const axiosInstance = axios.create({
-	baseURL: 'https://pixabay.com/api/',
-	params: {
-		key: API_KEY,
-		image_type: 'photo',
-		orientation: 'horizontal',
-		safesearch: true,
-	},
-});
-
-export function getImagesByQuery(query) {
-	return axiosInstance.get('', { params: { q: query } }).then(response => {
-		if (response.data.hits.length === 0) {
-			throw new Error('No images found');
-		}
-		return response.data;
-	});
+export async function getImagesByQuery(query, page) {
+    return await axios("https://pixabay.com/api/", {
+        params: {
+            key: API_KEY,
+            q: query,
+            image_type: "photo",
+            orientation: "horizontal",
+            safesearch: true,
+            per_page: 15,
+            page: page,
+        }
+    })
 }
 
-//. Ця функція повинна 
-// приймати один параметр query (пошукове слово, яке є рядком), 
-// здійснювати HTTP-запит і повертати значення властивості data з отриманої відповіді.
+//Ця функція повинна приймати два параметри query (пошукове слово,
+//  яке є рядком) та page (номер сторінки, яка є числом), здійснювати HTTP-запит 
+// і повертати значення властивості data з отриманої відповіді.
