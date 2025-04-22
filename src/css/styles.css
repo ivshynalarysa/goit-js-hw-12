@@ -165,6 +165,7 @@ img {
   position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
+  display: flex;
   margin: 0 auto;
 }
 
@@ -184,6 +185,7 @@ img {
   height: 24px;
   border-radius: 50%;
   animation: rotationBack 1s linear infinite;
+  
   transform-origin: center center;
 }
 

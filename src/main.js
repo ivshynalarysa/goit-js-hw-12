@@ -18,7 +18,7 @@ hideLoader();
 
 refs.form.addEventListener('submit', handleSubmit);
 refs.loadMore.addEventListener('click', onLoadMore);
-refs.loadMore.classList.replace("load-more", "hidden")
+refs.loadMore.classList.replace("load-more", "hidden");
 
 
 

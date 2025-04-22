@@ -66,7 +66,7 @@ export function hideLoader() {
 
 export function showLoadMoreButton() {
   loadMore.classList.add("load-more");
-}
+} 
 
 export function hideLoadMoreButton() {
   loadMore.classList.remove("load-more");
